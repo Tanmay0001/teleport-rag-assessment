@@ -1,14 +1,14 @@
-** Semantic RAG & Vector Search Benchmark
-Context Aware Retrieval Engine (RAG + Vector Search) **
+## Semantic RAG & Vector Search Benchmark
+## Context Aware Retrieval Engine (RAG + Vector Search) 
 
-This project implements a lightweight Retrieval-Augmented Generation (RAG) system to compare two retrieval strategies:
+This project implements a lightweight Retrieval Augmented Generation (RAG) system to compare two retrieval strategies:
 
-Strategy A: Raw embedding-based semantic search
-Strategy B: Query-expanded retrieval using a generative model (mocked)
+## Strategy A: Raw embedding based semantic search
+## Strategy B: Query expanded retrieval using a generative model (mocked)
 
 The goal is to evaluate how query rewriting improves retrieval quality in a vector database setup.
 
-🚀 Problem Statement
+## Problem Statement
 
 Design a local RAG pipeline that:
 
@@ -19,8 +19,8 @@ Performs semantic retrieval using similarity search
 Compares two retrieval strategies:
 Raw query embedding (baseline)
 Query expansion + embedding (enhanced)
-🧠 System Architecture
-🔹 Strategy A — Baseline Retrieval
+# System Architecture
+## Strategy A — Baseline Retrieval
 User Query
    ↓
 Embedding Model (Sentence Transformers)
@@ -28,7 +28,7 @@ Embedding Model (Sentence Transformers)
 Vector Search (FAISS)
    ↓
 Top-K Similar Documents
-🔹 Strategy B — Query-Enhanced Retrieval
+## Strategy B — Query-Enhanced Retrieval
 User Query
    ↓
 Query Expansion (Mock LLM / Generative Model)
@@ -40,43 +40,41 @@ Embedding Model
 Vector Search (FAISS)
    ↓
 Top-K Similar Documents
-🧱 Tech Stack
+# Tech Stack
 Python 3.11
 Sentence Transformers (all-MiniLM-L6-v2)
 FAISS (Inner Product / Cosine Similarity)
 NumPy
 Pytest (testing)
 Mock Vertex AI SDK (for query expansion simulation)
-📊 Dataset
+# Dataset
 
 A small curated corpus of 8 technical paragraphs covering:
 
-Auto-scaling & load balancing
+Auto scaling & load balancing
 Distributed systems
 RAG architecture
 Vector databases (FAISS)
 Query expansion techniques
-Kafka / event-driven systems
-Database connection pooling
 Cloud migration to Vertex AI
 
-Location:
+# Location:
 
 src/dataset.py
-⚙️ Core Design Decisions
+## Core Design Decisions
 1. Embedding Model
 
-We use:
+I use:
 
-sentence-transformers/all-MiniLM-L6-v2
-Why?
-Lightweight
+# sentence transformers/all-MiniLM-L6-v2
+As its:
+1. Lightweight
 Fast inference
 Strong semantic representation
 Industry standard for RAG prototypes
 2. Similarity Metric
 
-We use Cosine Similarity (via FAISS Inner Product)
+I use Cosine Similarity (via FAISS Inner Product)
 
 Why Cosine Similarity?
 Measures directional similarity (semantic meaning)
@@ -92,12 +90,12 @@ In-memory vector indexing
 Suitable for small-to-medium scale retrieval systems
 4. Query Expansion Strategy
 
-We simulate a generative model using a mock Vertex AI SDK.
+I simulate a generative model using a mock Vertex AI SDK.
 
 Purpose:
 Expand short queries into richer semantic descriptions
 Improve recall by increasing embedding context coverage
-📈 Evaluation Strategy
+# Evaluation Strategy
 
 We compare both approaches across multiple queries:
 
@@ -108,7 +106,7 @@ Average similarity scores
 Relevance improvement via query expansion
 Example Query
 
-"How does the system handle peak load?"
+## "How does the system handle peak load?"
 
 Strategy A (Raw Query)
 Direct embedding of original query
@@ -119,14 +117,14 @@ autoscaling
 load balancing
 traffic spikes
 Retrieves more relevant and higher-scoring chunks
-📊 Key Observation
+# Observation
 
 Query expansion consistently improves retrieval quality by:
 
 Increasing semantic coverage
 Reducing vocabulary mismatch
 Improving recall of relevant documents
-☁️ Production Migration (Vertex AI)
+# Production Migration (Vertex AI)
 
 In production, this system can be migrated to:
 
@@ -137,8 +135,8 @@ Vertex AI Vector Search (Matching Engine)
 Architecture:
 Store embeddings in GCS
 Build managed ANN index
-Deploy real-time endpoint for retrieval
-🧪 Running the Project
+Deploy real time endpoint for retrieval
+## Running the Project
 Install dependencies
 pip install -r requirements.txt
 Run benchmark
@@ -150,7 +148,7 @@ Console comparison (Strategy A vs B)
 JSON report in outputs/
 Run tests
 pytest
-📁 Project Structure
+## Project Structure-------dir:
 src/
   dataset.py              # Technical corpus
   embedder.py            # Sentence transformer embeddings
@@ -166,24 +164,25 @@ tests/
 
 main.py                  # Entry point
 outputs/                 # Benchmark results
-🧪 Example Output Insight
+# Example Output Insight
 Query	Strategy A	Strategy B
 Peak load handling	Moderate relevance	High relevance (autoscaling context)
 DB optimization	Partial match	Strong match (pooling + concurrency)
-🧠 Summary
+
+ # Summary
 
 This project demonstrates:
 
-End-to-end RAG pipeline design
+End to end RAG pipeline design
 Vector-based semantic retrieval
 Query expansion impact on retrieval quality
 Benchmark-driven evaluation of retrieval strategies
 Production-ready thinking with Vertex AI migration path
-✅ Final Note
+ Final Note
 
 This implementation focuses on:
 
 Clean architecture
 Reproducible evaluation
-Real-world RAG design patterns
+Realworld RAG design patterns
 Production scalability considerations
